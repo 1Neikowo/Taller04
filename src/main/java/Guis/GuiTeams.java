@@ -84,7 +84,6 @@ public class GuiTeams extends VentanaBase {
 			Pais paisSeleccionado = (Pais) comboBoxPais.getSelectedItem();
 			if (paisSeleccionado != null) {
 				realizarAccionSegunPais(paisSeleccionado);
-				this.dispose();
 			}
 		} else if (event.getSource() == botonEditar) {
 			Pais paisSeleccionado = (Pais) comboBoxPais.getSelectedItem();

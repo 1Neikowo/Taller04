@@ -7,11 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataPlayer {
-	private String archivoChi = "chi.txt";
-	private String archivoGer = "ger.txt";
-	private String archivoAus = "aus.txt";
-	private String archivoCmr = "crm.txt";
-	private ArrayList<Player> players = new ArrayList<Player>();
 
 	public boolean existeArchivo(String nombreArchivo) {
 		//Se verifica si existe el archivo con el nombre "nombreArchivo"
@@ -42,8 +37,32 @@ public class DataPlayer {
 		// TODO - implement DataPlayer.editarPlayerArchivo
 		throw new UnsupportedOperationException();
 	}
-
-	/*public void obtenerPlayerArchivo(int numero, String nombreArchivo) {
+	private ArrayList<String> leerArchivo(File archivo, String issn, boolean nuevoestado) throws IOException {
+		ArrayList<String> lineas = new ArrayList<>();
+		try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+			String linea;
+			while ((linea = br.readLine()) != null) {
+				lineas.add(actualizarEstado(linea, issn, nuevoestado));
+			}
+		}
+		return lineas;
+	}
+	private String actualizarEstado(String linea, String issn, boolean nuevoestado) {
+		String[] partes = linea.split(",");
+		if ((partes[2]).equals(issn)) {
+			return partes[0] + "," + partes[1] + "," + partes[2] + "," + partes[3] + ","+nuevoestado;
+		} else {
+			return linea;
+		}
+	}
+	private void escribirArchivo(File archivo, ArrayList<String> lineas) throws IOException {
+		try (PrintWriter pw = new PrintWriter(new FileWriter(archivo))) {
+			for (String linea : lineas) {
+				pw.println(linea);
+			}
+		}
+	}
+	public void obtenerPlayerArchivo(int numero, String nombre, Position position, String nombreArchivo) {
 		try {
 			File archivo = new File(nombreArchivo);
 			List<String> lineas = new ArrayList<>();
@@ -51,10 +70,11 @@ public class DataPlayer {
 			try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
 				String linea;
 				while ((linea = br.readLine()) != null) {
-					String[] partes = linea.split(",");
-					if (partes[1].equals()&& Integer.parseInt(partes[0])==) {
-						int cantidadnueva = Integer.parseInt(partes[6]) + ;
-						lineas.add(Integer.parseInt(partes[0]) + "," +partes[1]+","+partes[2]+ ","+partes[3] +","+partes[4]+ ","+partes[5] +","+cantidadnueva);
+					String[] partes = linea.split(";");
+					if ( Integer.parseInt(partes[0]) == numero) {
+						lineas.set(0,String.valueOf(numero));
+						lineas.set(1,String.valueOf(nombre));
+						lineas.set(2,String.valueOf(position));
 					} else {
 						lineas.add(linea);
 					}
@@ -69,7 +89,7 @@ public class DataPlayer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	public String[][] cargarArchivoEquipos(String nombreArchivo){;
 
