@@ -2,6 +2,7 @@ package Model;
 
 import Data.DataPlayer;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Team {
@@ -51,8 +52,12 @@ public class Team {
 	public ArrayList<Player> mostrarPlayers(String nombreArchivo) {
 		return gestor.obtenerPlayersArchivo(nombreArchivo);
 	}
-	/*public ArrayList<Team> mostrarPaises() {
-		return gestor.obtenerPaisesArchivo();
-	}*/
 
+
+	public String[][] cargarArchivo(String nombreArchivo) {
+		return gestor.cargarArchivoPais(nombreArchivo);
+	}
+	public String[][] cargarArchivoPais(String nombreArchivo){
+		return gestor.cargarArchivoEquipos(nombreArchivo);
+	}
 }

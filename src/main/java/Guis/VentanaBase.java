@@ -23,10 +23,11 @@ public class VentanaBase extends JFrame implements ActionListener {
 			return boton;
 	}
 
-	public void generarJLabel(String texto, int posicionX, int posicionY, int largoX, int largoY) {
+	public JLabel generarJLabel(String texto, int posicionX, int posicionY, int largoX, int largoY) {
 		JLabel label = new JLabel(texto);
 		label.setBounds(posicionX, posicionY, largoX, largoY);
 		this.add(label);
+		return label;
 	}
 
 	public JComboBox generarLista(Object[] datosLista, int posicionX, int posicionY, int largoX, int largoY) {

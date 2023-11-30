@@ -5,7 +5,8 @@ public class Player {
 	private String position;
 	private String nombre;
 	private int numero;
-
+	public Player(){
+	}
 	public Player(int numero, String nombre, String position) {
 		this.nombre = nombre;
 		this.position = position;
@@ -33,6 +34,9 @@ public class Player {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	public String toString() {
+		return "Nombre: " + this.nombre + ", Numero" + this.numero + ", Posicion: " + this.position;
 	}
 
 }

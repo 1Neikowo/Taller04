@@ -43,7 +43,7 @@ public class DataPlayer {
 		throw new UnsupportedOperationException();
 	}
 
-	public void obtenerPlayerArchivo(int numero, String nombreArchivo) {
+	/*public void obtenerPlayerArchivo(int numero, String nombreArchivo) {
 		try {
 			File archivo = new File(nombreArchivo);
 			List<String> lineas = new ArrayList<>();
@@ -52,8 +52,8 @@ public class DataPlayer {
 				String linea;
 				while ((linea = br.readLine()) != null) {
 					String[] partes = linea.split(",");
-					if (partes[1].equals(nombre)&& Integer.parseInt(partes[0])==id) {
-						int cantidadnueva = Integer.parseInt(partes[6]) + cantidad;
+					if (partes[1].equals()&& Integer.parseInt(partes[0])==) {
+						int cantidadnueva = Integer.parseInt(partes[6]) + ;
 						lineas.add(Integer.parseInt(partes[0]) + "," +partes[1]+","+partes[2]+ ","+partes[3] +","+partes[4]+ ","+partes[5] +","+cantidadnueva);
 					} else {
 						lineas.add(linea);
@@ -69,9 +69,77 @@ public class DataPlayer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	public void obtenerPaisesArchivo(){
+	}*/
 
-	}
+	public String[][] cargarArchivoEquipos(String nombreArchivo){;
 
+		int filas = 23;
+		int columnas = 3;
+
+		String[][] datos = new String[filas][columnas];
+
+		try {
+			File archivo = new File(nombreArchivo);
+			FileReader fr = new FileReader(archivo);
+			BufferedReader br = new BufferedReader(fr);
+
+			String linea;
+			int fila = 0;
+
+			while ((linea = br.readLine()) != null && fila < filas) {
+
+				String[] columnasEnLinea = linea.split(";");
+
+
+				for (int columna = 0; columna < columnasEnLinea.length && columna < columnas; columna++) {
+					datos[fila][columna] = columnasEnLinea[columna];
+				}
+
+				fila++;
+			}
+
+			br.close();
+			return datos;
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}return null;
+	}
+	public String[][] cargarArchivoPais(String nombreArchivo){;
+
+		int filas = 4;
+		int columnas = 4;
+
+		String[][] datos = new String[filas][columnas];
+
+		try {
+			File archivo = new File(nombreArchivo);
+			FileReader fr = new FileReader(archivo);
+			BufferedReader br = new BufferedReader(fr);
+
+			String linea;
+			int fila = 0;
+
+			while ((linea = br.readLine()) != null && fila < filas) {
+
+				String[] columnasEnLinea = linea.split(";");
+
+
+				for (int columna = 0; columna < columnasEnLinea.length && columna < columnas; columna++) {
+					datos[fila][columna] = columnasEnLinea[columna];
+				}
+
+				fila++;
+			}
+
+			br.close();
+			return datos;
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}return null;
+	}
 }
+
