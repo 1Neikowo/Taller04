@@ -9,7 +9,7 @@ public class GuiTeams extends VentanaBase {
 
 	private JComboBox<Pais> comboBoxPais;
 	private JButton botonPlayers;
-	private JButton botonExit;
+	private JButton botonEditar;
 
 	private JLabel rankingLabel;
 
@@ -34,7 +34,7 @@ public class GuiTeams extends VentanaBase {
 		generarComboBoxPais();
 		generarLabel();
 		generarBotonPlayer();
-
+		generarBotonEditar();
 	}
 	public void generarComboBoxPais(){
 		super.generarJLabel("País:", 20, 250, 150, 20);
@@ -51,6 +51,12 @@ public class GuiTeams extends VentanaBase {
 		botonPlayers = generarBoton("Players", 250, 100, 100, 30);
 		this.add(botonPlayers);
 		botonPlayers.addActionListener(this);
+
+	}
+	public void generarBotonEditar(){
+		botonEditar = generarBoton("Editar", 150, 100, 100, 30);
+		this.add(botonEditar);
+		botonEditar.addActionListener(this);
 
 	}
 
@@ -78,6 +84,13 @@ public class GuiTeams extends VentanaBase {
 			Pais paisSeleccionado = (Pais) comboBoxPais.getSelectedItem();
 			if (paisSeleccionado != null) {
 				realizarAccionSegunPais(paisSeleccionado);
+				this.dispose();
+			}
+		} else if (event.getSource() == botonEditar) {
+			Pais paisSeleccionado = (Pais) comboBoxPais.getSelectedItem();
+			if (paisSeleccionado != null) {
+				realizarEdicionSegunPais(paisSeleccionado);
+				this.dispose();
 			}
 		}
 	}
@@ -95,6 +108,29 @@ public class GuiTeams extends VentanaBase {
 				break;
 			case Germany:
 				tabla = new VentanaTabla(ger, nombreColumnas,"Jugadores");
+				break;
+			default:
+
+				System.out.println("Acciones predeterminadas o mensaje de error");
+		}
+	}
+	private void realizarEdicionSegunPais(Pais pais) {
+		switch (pais) {
+			case Chile:
+				new GuiPlayers(chi);
+				this.dispose();
+				break;
+			case Cameroon:
+				new GuiPlayers(cmr);
+				this.dispose();
+				break;
+			case Australia:
+				new GuiPlayers(aus);
+				this.dispose();
+				break;
+			case Germany:
+				new GuiPlayers(ger);
+				this.dispose();
 				break;
 			default:
 
